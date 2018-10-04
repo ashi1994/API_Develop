@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,23 +21,19 @@ public class WelcomeController {
      /**
       * Multiple Multiple URIs mapping
       * @return
+      *  localhost:8080/home
+	     localhost:8080/home/
+	     localhost:8080/home/page
+	     localhost:8080/home/pageabc
+	     localhost:8080/home/view/
+	     localhost:8080/home/view/view
       */
-	 @RequestMapping(value = {
-		        "",
-		        "/page",
-		        "page*",
-		        "view/*,**/msg"
-		    })
+	 @RequestMapping(value = {"","/page", "page*", "view/*,**/msg"})
 		    String indexMultipleMapping() {
 		        return "Hello from index multiple mapping.";
 		    }  
 	 /**
-	 localhost:8080/home
-	 localhost:8080/home/
-	 localhost:8080/home/page
-	 localhost:8080/home/pageabc
-	 localhost:8080/home/view/
-	 localhost:8080/home/view/view
+	
 	 **/
 	 /**
 	  * Single headers
@@ -44,11 +41,21 @@ public class WelcomeController {
 	  *
 	  */	 
 
-	 @RequestMapping(method = RequestMethod.GET,value="/getcall",headers = {"content-type=application/json"})
+	 @RequestMapping(method = RequestMethod.GET,value="/getcall",headers = {"content-type=application/json"},produces = "application/json")
+	 @ResponseBody
 	    public String getWithHeader() {
 	        return "Hello Boot!";
 	        
 	    }
+	 /**
+	  *  Multiple HTTP request methods to the same controller method
+	  * @return
+	  */
+	 @RequestMapping(value = {"/doj/spring"}, method = {RequestMethod.GET, RequestMethod.POST})
+	 @ResponseBody
+	 public String getDOJHome() {
+	     return "Get a DOJ Home Page";
+	 }
 	 
 	 
      /**
@@ -127,6 +134,17 @@ public class WelcomeController {
 	    	 int a=Integer.parseInt(id1);
 	    	 int b=Integer.parseInt(id2);
 	    	 return (a/b);
+	     }
+	     
+	     /**
+	      * Fallback for all requests
+	      * @return
+	      */
+	     
+	     @RequestMapping(value = {"*"})
+	     @ResponseBody
+	     public String getDOJDefaultPage() {
+	         return "Get a DOJ Default Page";
 	     }
 	               
 	     
