@@ -47,6 +47,7 @@ public class WelcomeController {
 	 @RequestMapping(method = RequestMethod.GET,value="/getcall",headers = {"content-type=application/json"})
 	    public String getWithHeader() {
 	        return "Hello Boot!";
+	        
 	    }
 	 
 	 
