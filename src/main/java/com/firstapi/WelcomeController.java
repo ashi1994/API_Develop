@@ -2,11 +2,16 @@ package com.firstapi;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.model.User;
 
 @RestController
 
@@ -146,7 +151,22 @@ public class WelcomeController {
 	     public String getDOJDefaultPage() {
 	         return "Get a DOJ Default Page";
 	     }
-	               
 	     
+	     /**
+	      * GET call with set details
+	      * @return
+	      */
+	     
+	     @GetMapping(value ="/getdetails")
+	     @ResponseBody
+	     public User getPerson() {
+	       User us=new User();
+	       us.setName("ashiwani");
+	       us.setAge("18");
+	       us.setAdd("patna");
+	       return us;
+	     }
+	     
+	           
 	 }
 
