@@ -1,4 +1,4 @@
-package com.firstapi;
+package com.apis;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
