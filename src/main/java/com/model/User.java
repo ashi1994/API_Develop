@@ -3,12 +3,33 @@ package com.model;
 import java.util.Date;
 
 public class User {
+	
+	
+	public User(String name, String age, String add) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.add = add;
+	}
 	private String name;
 	private String age;
 	private String add;
 	private String id;
 	private Date createdOn;
 	private int trackingNumber;
+	
+	public User(String name, String age, Date createdOn, int trackingNumber) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.createdOn = createdOn;
+		this.trackingNumber = trackingNumber;
+	}
+	
+	public User() {
+		
+	}
+	
 	
 	public int getTrackingNumber() {
 		return trackingNumber;

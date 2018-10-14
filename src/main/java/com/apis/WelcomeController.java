@@ -20,7 +20,7 @@ public class WelcomeController {
 	
 	 @RequestMapping(method = RequestMethod.GET,value="/welcome")
 	    public String get() {
-	        return "Greetings from Spring Boot!";
+	        return "Greetings from Spring Boot";
 	    }
 	 
      /**

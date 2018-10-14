@@ -1,4 +1,6 @@
 package com.apis;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -12,8 +14,8 @@ import com.model.User;
 @RestController
 @RequestMapping("/ashiwani")
 public class ControllerPost {
-	
-    
+	    
+	  
     @PostMapping(value ="/postcall")
     @ResponseBody
     public User getdetails(@RequestBody User us1,@RequestHeader (value="userId", required=true) String userId,@RequestHeader (value="trackingNumber", required=true) int trackingNumber) throws Exception {
@@ -27,5 +29,8 @@ public class ControllerPost {
    		 throw new Exception("Invalid User Id");
       return us1;
     }
+    
+    
+   	 }
 
-}
+
