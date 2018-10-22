@@ -24,32 +24,12 @@ public class UserDBMapping {
 	private String name;
 	@Column(name = "age")
 	private String age;
-	@Transient
-	private java.util.Date createdDate;
-	
-	
-
-
-	
-	 public java.util.Date getCreatedDate() {
-		return createdDate;
-	}
-
-
-
-
-	public void setCreatedDate(java.util.Date date) {
-		this.createdDate = date;
-	}
 
 
 
 
 	public UserDBMapping() {
 		}
-
-
-
 
 	public Integer getId() {
 		return id;

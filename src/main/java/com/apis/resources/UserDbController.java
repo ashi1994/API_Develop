@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apis.model.UserDBMapping;
+import com.apis.rabbitmqsender.RabbitMQSender;
 import com.apis.repository.UserRepositry;
 
 @RestController
@@ -21,26 +22,37 @@ public class UserDbController {
 
     @Autowired
     UserRepositry userRespository;
+    
 
     @GetMapping("/user")
     public List<UserDBMapping> index(){
         return userRespository.findAll();
     }
     
-    @PostMapping(value = "/create")
+    @PostMapping(value = "/createandviewwholelist")
     public List<UserDBMapping> persist(@RequestBody final UserDBMapping users) {
     	userRespository.save(users);
-    	java.util.Date date=new java.util.Date();
-    	users.setCreatedDate(date);
     	List<UserDBMapping> li=userRespository.findAll();
         return li;
     }
-
+    
+    @PostMapping(value = "/createuser")
+    public String persistuser(@RequestBody final UserDBMapping users) {
+    	userRespository.save(users);
+    	int id=users.getId();
+    	return "Id " +id+" Created for user";
+    }
     @GetMapping("/user/{id}")
     public Optional<UserDBMapping> show(@PathVariable Integer id){
         //int userId = Integer.parseInt(id);
         return userRespository.findById(id);
     }
+    /**
+     * Upadate existing User
+     * @param id
+     * @param users
+     * @return
+     */
 
     @PutMapping("/user/{id}")
     public UserDBMapping update(@PathVariable Integer id, @RequestBody UserDBMapping users){

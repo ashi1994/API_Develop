@@ -1,5 +1,6 @@
 package com.apis;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.apis.rabbitmqsender.RabbitMQSender;
 import com.model.User;
 
 @RestController
 
 @RequestMapping("/ashiwani")
 public class WelcomeController {
+	@Autowired
+	RabbitMQSender rabbitMQSender;
 	
 	 @RequestMapping(method = RequestMethod.GET,value="/welcome")
 	    public String get() {
@@ -164,6 +168,7 @@ public class WelcomeController {
 	       us.setName("ashiwani");
 	       us.setAge("18");
 	       us.setAdd("patna");
+	       rabbitMQSender.send(us);
 	       return us;
 	     }
 	     
