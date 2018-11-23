@@ -1,4 +1,4 @@
-package com.apis.configurationrbmq;
+package com.apis.rabbitmqsender;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Binding;

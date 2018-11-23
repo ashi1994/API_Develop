@@ -25,9 +25,6 @@ public class UserDBMapping {
 	@Column(name = "age")
 	private String age;
 
-
-
-
 	public UserDBMapping() {
 		}
 

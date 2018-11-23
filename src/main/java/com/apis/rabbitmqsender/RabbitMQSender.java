@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.model.User;
+import com.apis.model.UserDBMapping;
 
 
 @Service
@@ -20,7 +20,7 @@ public class RabbitMQSender {
 	@Value("${javainuse.rabbitmq.routingkey}")
 	private String routingkey;	
 	
-	public void send(User user) {
+	public void send(UserDBMapping user) {
 		rabbitTemplate.convertAndSend(exchange, routingkey, user);
 		System.out.println("Send msg = " + user);
 	    
